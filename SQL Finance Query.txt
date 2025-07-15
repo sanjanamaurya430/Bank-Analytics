@@ -1,0 +1,55 @@
+use `bank_p`;
+select * from bank_p.finance_1;
+SHOW DATABASES;
+SELECT 
+    YEAR(issue_d) AS loan_year,
+    loan_status,
+    SUM(loan_amnt) AS total_loan_amount
+FROM 
+    finance_1
+GROUP BY 
+    YEAR(issue_d), loan_status;
+
+2.  SELECT 
+    grade,
+    sub_grade,
+    SUM(revol_bal) AS total_revol_bal
+FROM 
+  finance_1
+GROUP BY 
+    grade, sub_grade
+ORDER BY 
+    grade, sub_grade;
+
+
+3. SELECT 
+    verification_status,
+    SUM(total_pymnt) AS total_payment
+FROM 
+    finance_1
+GROUP BY 
+    verification_status
+ORDER BY 
+    verification_status;
+
+4. SELECT 
+    addr_state,
+    MONTH(issue_d) AS loan_month,
+    loan_status,
+    COUNT(*) AS loan_count
+FROM 
+    finance_1
+GROUP BY 
+    addr_state, loan_month, loan_status
+ORDER BY 
+    addr_state, loan_month, loan_status;
+ 
+5. SELECT 
+    home_ownership,
+    MAX(last_pymnt_d) AS last_payment_date
+FROM 
+   finance_1
+GROUP BY 
+    home_ownership
+ORDER BY 
+    home_ownership;
